@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSmart | Smart Travel, Simplified</title>
+    <meta name="description" content="Plan your trips with TravelSmart. Find the fastest and cheapest routes with real-time map visualization.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">TravelSmart</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#app">Planner</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="container hero-content">
+            <h1>Smart Travel, Simplified</h1>
+            <p>The ultimate tool to find the fastest and cheapest routes across any city. Experience travel planning like never before.</p>
+        </div>
+    </header>
+
+    <section id="about" class="about-section container">
+        <div class="mission-grid">
+            <div class="mission-text">
+                <span class="section-tag">Our Mission</span>
+                <h2>Smart Travel, Better Cities</h2>
+                <p>Navigating urban transportation shouldn't be a struggle. We help students, commuters, and newcomers find the perfect balance between time and cost.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Multimodal Integration (Bus, Train, Cab)</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Real-time Cost & Time Estimates</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Smart Walking (Limited to < 1km)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-stats">
+                <div class="stat-card">
+                    <h3>30%</h3>
+                    <p>Faster Commute</p>
+                </div>
+                <div class="stat-card">
+                    <h3>25%</h3>
+                    <p>Reduced Costs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="search-card">
+                <div class="search-inputs">
+                    <div class="input-group">
+                        <label for="source"><i class="fa-solid fa-location-dot"></i> Source</label>
+                        <input type="text" id="source" placeholder="E.g., Mumbai, Maharashtra">
+                    </div>
+                    <div class="input-group">
+                        <label for="destination"><i class="fa-solid fa-flag-checkered"></i> Destination</label>
+                        <input type="text" id="destination" placeholder="E.g., Pune, Maharashtra">
+                    </div>
+                </div>
+                <div class="search-actions">
+                    <button id="btn-fastest" class="btn btn-primary">
+                        <i class="fa-solid fa-bolt"></i> Fastest Route
+                    </button>
+                    <button id="btn-cheapest" class="btn btn-secondary">
+                        <i class="fa-solid fa-tags"></i> Cheapest Route
+                    </button>
+                    <button id="btn-location" class="btn btn-icon" title="Use My Location">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="app-main container" id="app">
+        <div class="section-header">
+            <h2>Track Your Route</h2>
+            <p>Get accurate directions and cost breakdowns for your destination.</p>
+        </div>
+        <div class="layout-grid" id="main-layout">
+            <div class="results-side" id="results-container">
+                <div id="loading" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Finding best routes...</p>
+                </div>
+                <div id="results-list" class="results-list hidden">
+                    <!-- Cards will be injected here -->
+                </div>
+                <div id="placeholder-text" class="placeholder-text">
+                    <i class="fa-solid fa-route"></i>
+                    <h3>Ready to explore?</h3>
+                    <p>Enter your source and destination to see the magic happen.</p>
+                </div>
+            </div>
+            <div class="map-side">
+                <div id="map"></div>
+            </div>
+        </div>
+    </main>
+
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">Testimonials</span>
+                <h2>What Travelers Say</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"TravelSmart saved me when I first moved to Mumbai. The multimodal combos are a game changer!"</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User">
+                        <div>
+                            <strong>Anjali Sharma</strong>
+                            <span>Student</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"I love how it limits walking distances. The 'Cheapest Route' really helps me save on my daily office commute."</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704e" alt="User">
+                        <div>
+                            <strong>Rahul Verma</strong>
+                            <span>Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p>"The integration with the map is seamless. Highly recommend for anyone looking for reliable route planning."</p>
+                    <div class="reviewer">
+                        <img src="https://i.pravatar.cc/150?u=a042581f4e29026704f" alt="User">
+                        <div>
+                            <strong>Sneha Kapur</strong>
+                            <span>Frequent Traveler</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 TravelSmart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>
